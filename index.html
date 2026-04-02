@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Esoteric Language Interpreter</title>
+<style>
+body { background:#fff; color:#333; font-family:'Courier New', monospace; margin:0; padding:20px; }
+h1 { text-align:center; color:#222; }
+.container { max-width:900px; margin:0 auto; }
+select, textarea, input, button { width:100%; box-sizing:border-box; font-family:inherit; font-size:16px; margin-top:10px; padding:10px; border-radius:8px; border:1px solid #ccc; }
+textarea { height:220px; resize:vertical; }
+button { background:#333; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s; }
+button:hover { background:#555; }
+#output { margin-top:20px; background:#f5f5f5; color:#111; padding:15px; min-height:100px; border-radius:8px; white-space:pre-wrap; border:1px solid #ccc; }
+label { font-weight:bold; margin-top:15px; display:block; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Esoteric Language Interpreter</h1>
+<p1>あくまで簡易的なものです。バグ多いです</p1>
+<label for="lang">言語選択</label>
+<select id="lang">
+    <option value="bf">Brainfuck</option>
+    <option value="malbolge">Malbolge</option>
+    <option value="befunge">Befunge</option>
+    <option value="ook">Ook!</option>
+    <option value="hq9p">HQ9+</option>
+    <option value="deadfish">DeadFish</option>
+    <option value="smallfuck">Smallfuck</option>
+    <option value="commdis">コミュ障言語</option>
+    <option value="cow">Cow</option>
+    <option value="hworld">Hworld</option>
+    <option value="symbolic">!@#$%^&*()_+</option>
+</select>
+
+<label for="code">コード入力</label>
+<textarea id="code" placeholder="コードをここに入力"></textarea>
+
+<label for="input">入力（必要な場合のみ）</label>
+<input id="input" placeholder="入力をここに入力">
+
+<button onclick="run()">実行</button>
+
+<div id="output" placeholder="出力結果"></div>
+</div>
+
+<script src="bf.js"></script>
+<script src="malbolge.js"></script>
+<script src="befunge.js"></script>
+<script src="ook.js"></script>
+<script src="hq9p.js"></script>
+<script src="deadfish.js"></script>
+<script src="smallfuck.js"></script>
+<script src="commdis.js"></script>
+<script src="cow.js"></script>
+<script src="hworld.js"></script>
+<script src="symbolic.js"></script>
+<script>
+function run() {
+    const lang = document.getElementById("lang").value;
+    const code = document.getElementById("code").value;
+    const input = document.getElementById("input").value;
+    let output = "";
+    try {
+        switch(lang){
+            case "bf": output=bf(code,input); break;
+            case "malbolge": output=malbolge(code,input); break;
+            case "befunge": output=befunge(code,input); break;
+            case "ook": output=ook(code,input); break;
+            case "hq9p": output=hq9p(code); break;
+            case "deadfish": output=deadfish(code,input); break;
+            case "smallfuck": output=smallfuck(code); break;
+            case "commdis": output=commdis(code); break;
+            case "cow": output=cow(code,input); break;
+            case "hworld": output=hworld(code); break;
+            case "symbolic": output=symbolic(code,input); break;
+            default: output="未対応の言語です";
+        }
+    } catch(e) {
+        output="Error: "+e.message;
+    }
+    document.getElementById("output").textContent=output;
+}
+</script>
+</body>
+</html>
