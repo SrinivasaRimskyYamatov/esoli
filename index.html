@@ -32,6 +32,7 @@ label { font-weight:bold; margin-top:15px; display:block; }
     <option value="cow">Cow</option>
     <option value="hworld">Hworld</option>
     <option value="symbolic">!@#$%^&*()_+</option>
+    <option value="bflak">BrainFlak</option>
 </select>
 <label for="code">コード入力</label>
 <textarea id="code" placeholder="コードをここに入力"></textarea>
@@ -51,6 +52,7 @@ label { font-weight:bold; margin-top:15px; display:block; }
 <script src="cow.js"></script>
 <script src="hworld.js"></script>
 <script src="symbolic.js"></script>
+<script src="bflak.js"></script>
 <script>
 function run() {
     const lang = document.getElementById("lang").value;
@@ -70,6 +72,7 @@ function run() {
             case "cow": output=cow(code,input); break;
             case "hworld": output=hworld(code); break;
             case "symbolic": output=symbolic(code,input); break;
+            case "bflak": output=bflak(code); break;
             default: output="未対応の言語です";
         }
     } catch(e) {
